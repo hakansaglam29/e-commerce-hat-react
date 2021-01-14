@@ -6,39 +6,42 @@ import CustomButton from '../custom-button/custom-button.component';
 import { signInWithGoogle } from '../../firebase/firebase.utils'
 
 const SignIn = () => {
-    const [value, setValue] = useState({
+
+    const [state, setState] = useState({
         email: "",
         password: ""
     });
 
+    const { email, password } = state;
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        setValue({ email: "", password: "" })
-
+        setState({ email: "", password: "" })
     }
 
     const handleChange = (event) => {
         const { value, name } = event.target;
-        setValue({ [name]: value })
+        setState({
+            ...state,
+            [name]: value
+        })
     }
-
-
     return (
-        <div className='sign-in'>
+        <div className='sign-in' >
             <h2> I already have an account </h2>
             <span> Sign in with your email and password</span>
             <form onSubmit={handleSubmit}>
                 <FormInput
                     name="email"
                     type="email"
-                    value={value.email}
+                    value={email}
                     handleChange={handleChange}
                     label='email'
                     required />
                 <FormInput
                     name="password"
                     type="password"
-                    value={value.password}
+                    value={password}
                     handleChange={handleChange}
                     label='password'
                     required />
@@ -53,5 +56,4 @@ const SignIn = () => {
         </div>
     )
 }
-
 export default SignIn;
