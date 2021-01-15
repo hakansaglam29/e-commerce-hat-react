@@ -8,15 +8,40 @@
     border: 1px solid black;
     background-color: white;
     top: 90px;
-    right: 50px;
+    right: 40px;
     z-index: 5;
   
     .cart-items {
       height: 240px;
       display: flex;
       flex-direction: column;
-      overflow: scroll;
+      overflow-y: scroll;
     }
+
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+      border-radius: 10px;
+      border: none;
+      background: transparent;
+    }
+     
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: rgb(207, 207, 207); 
+      border-radius: 10px;
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgb(59, 59, 59); 
+    }
+
   
     button {
       margin-top: auto;
