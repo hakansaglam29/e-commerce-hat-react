@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux'
+import { updateCollections } from '../../redux/shop/shop.actions';
 
 import WithSpinner from '../../components/with-spinner/with-spinner.component';
 
@@ -14,8 +15,6 @@ import {
 }
     from '../../firebase/firebase.utils';
 
-import { updateCollections } from '../../redux/shop/shop.actions';
-
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview)
 const CollectionPageWithSpinner = WithSpinner(CollectionPage)
 class ShopPage extends React.Component {
@@ -23,18 +22,23 @@ class ShopPage extends React.Component {
         loading: true
     };
 
-
+  'https://firestore.googleapis.com/v1/projects/crwn-db-ab3ff/databases/(default)/documents/collections'
 
     unsubscribeFromSnapshot = null;
 
     componentDidMount() {
         const { updateCollections } = this.props;
         const collectionRef = firestore.collection('collections');
-        collectionRef.onSnapshot(async snapshot => {
-            const collectionsMap = convertCollectionSnapshotToMap(snapshot)
-            updateCollections(collectionsMap)
-            this.setState({ loading: false })
-        })
+
+        // fetch('https://firestore.googleapis.com/v1/projects/crwn-db-ab3ff/databases/(default)/documents/collections')
+        // .then(response => response.json())
+        // .then(collections => console.log(collections))   // Because it is so nested, I do not prefer do it.
+
+        collectionRef.get().then (snapshot => {
+                const collectionsMap = convertCollectionSnapshotToMap(snapshot)
+                updateCollections(collectionsMap)
+                this.setState({ loading: false })
+        });
     }
 
 
