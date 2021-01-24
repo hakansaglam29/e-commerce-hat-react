@@ -11,7 +11,16 @@ export const SignInAndSignUpContainer = styled.div`
     width: unset;
     align-items: center;
     > *:first-child {
-      margin-bottom: 50px;
+      margin-bottom: 50px; 
     }
+  }
+  @media screen and (max-width: 420px) {
+    > *:first-child {
+      width: 92vw;
+    }
+    > *:last-child {
+      width: 92vw;
+    }
+
   }
 `;
