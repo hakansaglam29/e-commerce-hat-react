@@ -1,3 +1,4 @@
+import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 
@@ -40,4 +41,4 @@ const StripeCheckoutButton = ({ price }) => {
     )
 }
 
-export default StripeCheckoutButton;
+export default React.memo(StripeCheckoutButton);
